@@ -1,0 +1,482 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Regions on the left, Top Industries on the right.",
+  "height": 400,
+  "width": 700,
+  "title": {
+    "text": "Billionaires in Different Regions and Top Industries",
+    "color": "black",
+    "fontWeight": "bold",
+    "fontSize": 28,
+    "font": "Poppins"
+  },
+  "data": [
+    {
+      "name": "main",
+      "values": [
+      {
+        "region": "Africa",
+        "industry": "Fashion & Retail",
+        "number": 18.18,
+        "left": "Africa",
+        "right": "Fashion & Retail",
+        "size": 18.18
+      },
+      {
+        "region": "Africa",
+        "industry": "Finance & Investments",
+        "number": 9.09,
+        "left": "Africa",
+        "right": "Finance & Investments",
+        "size": 9.09
+      },
+      {
+        "region": "Africa",
+        "industry": "Manufacturing",
+        "number": 9.09,
+        "left": "Africa",
+        "right": "Manufacturing",
+        "size": 9.09
+      },
+      {
+        "region": "Asia",
+        "industry": "Fashion & Retail",
+        "number": 7.06,
+        "left": "Asia",
+        "right": "Fashion & Retail",
+        "size": 7.06
+      },
+      {
+        "region": "Asia",
+        "industry": "Finance & Investments",
+        "number": 4.79,
+        "left": "Asia",
+        "right": "Finance & Investments",
+        "size": 4.79
+      },
+      {
+        "region": "Asia",
+        "industry": "Food & Beverage",
+        "number": 7.67,
+        "left": "Asia",
+        "right": "Food & Beverage",
+        "size": 7.67
+      },
+      {
+        "region": "Asia",
+        "industry": "Healthcare",
+        "number": 9.84,
+        "left": "Asia",
+        "right": "Healthcare",
+        "size": 9.84
+      },
+      {
+        "region": "Asia",
+        "industry": "Manufacturing",
+        "number": 19.34,
+        "left": "Asia",
+        "right": "Manufacturing",
+        "size": 19.34
+      },
+      {
+        "region": "Asia",
+        "industry": "Technology",
+        "number": 14.55,
+        "left": "Asia",
+        "right": "Technology",
+        "size": 14.55
+      },
+      {
+        "region": "Europe",
+        "industry": "Fashion & Retail",
+        "number": 15.86,
+        "left": "Europe",
+        "right": "Fashion & Retail",
+        "size": 15.86
+      },
+      {
+        "region": "Europe",
+        "industry": "Finance & Investments",
+        "number": 13.36,
+        "left": "Europe",
+        "right": "Finance & Investments",
+        "size": 13.36
+      },
+      {
+        "region": "Europe",
+        "industry": "Food & Beverage",
+        "number": 7.05,
+        "left": "Europe",
+        "right": "Food & Beverage",
+        "size": 7.05
+      },
+      {
+        "region": "Europe",
+        "industry": "Healthcare",
+        "number": 8.52,
+        "left": "Europe",
+        "right": "Healthcare",
+        "size": 8.52
+      },
+      {
+        "region": "Europe",
+        "industry": "Manufacturing",
+        "number": 9.84,
+        "left": "Europe",
+        "right": "Manufacturing",
+        "size": 9.84
+      },
+      {
+        "region": "Europe",
+        "industry": "Technology",
+        "number": 6.31,
+        "left": "Europe",
+        "right": "Technology",
+        "size": 6.31
+      },
+      {
+        "region": "Middle East",
+        "industry": "Fashion & Retail",
+        "number": 4.55,
+        "left": "Middle East",
+        "right": "Fashion & Retail",
+        "size": 4.55
+      },
+      {
+        "region": "Middle East",
+        "industry": "Finance & Investments",
+        "number": 9.09,
+        "left": "Middle East",
+        "right": "Finance & Investments",
+        "size": 9.09
+      },
+      {
+        "region": "Middle East",
+        "industry": "Food & Beverage",
+        "number": 4.55,
+        "left": "Middle East",
+        "right": "Food & Beverage",
+        "size": 4.55
+      },
+      {
+        "region": "North America",
+        "industry": "Fashion & Retail",
+        "number": 7.87,
+        "left": "North America",
+        "right": "Fashion & Retail",
+        "size": 7.87
+      },
+      {
+        "region": "North America",
+        "industry": "Finance & Investments",
+        "number": 25.38,
+        "left": "North America",
+        "right": "Finance & Investments",
+        "size": 25.38
+      },
+      {
+        "region": "North America",
+        "industry": "Food & Beverage",
+        "number": 8.88,
+        "left": "North America",
+        "right": "Food & Beverage",
+        "size": 8.88
+      },
+      {
+        "region": "North America",
+        "industry": "Healthcare",
+        "number": 5.08,
+        "left": "North America",
+        "right": "Healthcare",
+        "size": 5.08
+      },
+      {
+        "region": "North America",
+        "industry": "Manufacturing",
+        "number": 4.31,
+        "left": "North America",
+        "right": "Manufacturing",
+        "size": 4.31
+      },
+      {
+        "region": "North America",
+        "industry": "Technology",
+        "number": 19.04,
+        "left": "North America",
+        "right": "Technology",
+        "size": 19.04
+      },
+      {
+        "region": "South America",
+        "industry": "Fashion & Retail",
+        "number": 18.1,
+        "left": "South America",
+        "right": "Fashion & Retail",
+        "size": 18.1
+      },
+      {
+        "region": "South America",
+        "industry": "Finance & Investments",
+        "number": 20.95,
+        "left": "South America",
+        "right": "Finance & Investments",
+        "size": 20.95
+      },
+      {
+        "region": "South America",
+        "industry": "Food & Beverage",
+        "number": 11.43,
+        "left": "South America",
+        "right": "Food & Beverage",
+        "size": 11.43
+      },
+      {
+        "region": "South America",
+        "industry": "Healthcare",
+        "number": 9.52,
+        "left": "South America",
+        "right": "Healthcare",
+        "size": 9.52
+      },
+      {
+        "region": "South America",
+        "industry": "Manufacturing",
+        "number": 6.67,
+        "left": "South America",
+        "right": "Manufacturing",
+        "size": 6.67
+      },
+      {
+        "region": "South America",
+        "industry": "Technology",
+        "number": 4.76,
+        "left": "South America",
+        "right": "Technology",
+        "size": 4.76
+      }
+      ]
+    },
+    {
+      "name": "nodes",
+      "source": "main",
+      "transform": [
+        {"type": "formula", "expr": "datum.left+datum.right", "as": "key"},
+        {"type": "fold", "fields": ["left", "right"], "as": ["stack", "grpId"]},
+        {
+          "type": "formula",
+          "expr": "datum.stack == 'left' ? datum.left+' '+datum.right : datum.right+' '+datum.left",
+          "as": "sortField"
+        },
+        {
+          "type": "stack",
+          "groupby": ["stack"],
+          "sort": {"field": "sortField", "order": "descending"},
+          "field": "size"
+        },
+        {"type": "formula", "expr": "(datum.y0+datum.y1)/2", "as": "yc"}
+      ]
+    },
+    {
+      "name": "groups",
+      "source": "nodes",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["stack", "grpId"],
+          "fields": ["size"],
+          "ops": ["sum"],
+          "as": ["total"]
+        },
+        {
+          "type": "stack",
+          "groupby": ["stack"],
+          "sort": {"field": "grpId", "order": "descending"},
+          "field": "total"
+        },
+        {"type": "formula", "expr": "scale('y', datum.y0)", "as": "scaledY0"},
+        {"type": "formula", "expr": "scale('y', datum.y1)", "as": "scaledY1"},
+        {
+          "type": "formula",
+          "expr": "datum.stack == 'left'",
+          "as": "rightLabel"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.total/domain('y')[1]",
+          "as": "percentage"
+        }
+      ]
+    },
+    {
+      "name": "destinationNodes",
+      "source": "nodes",
+      "transform": [{"type": "filter", "expr": "datum.stack == 'right'"}]
+    },
+    {
+      "name": "edges",
+      "source": "nodes",
+      "transform": [
+        {"type": "filter", "expr": "datum.stack == 'left'"},
+        {
+          "type": "lookup",
+          "from": "destinationNodes",
+          "key": "key",
+          "fields": ["key"],
+          "as": ["target"]
+        },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "diagonal",
+          "sourceY": {"expr": "scale('y', datum.yc)"},
+          "sourceX": {"expr": "scale('x', 'left') + bandwidth('x')"},
+          "targetY": {"expr": "scale('y', datum.target.yc)"},
+          "targetX": {"expr": "scale('x', 'right')"}
+        },
+        {
+          "type": "formula",
+          "expr": "range('y')[0]-scale('y', datum.size)",
+          "as": "strokeWidth"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.size/domain('y')[1]",
+          "as": "percentage"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": ["left", "right"],
+      "paddingOuter": 0,
+      "paddingInner": 0.95
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {"data": "nodes", "field": "y1"}
+    },
+    {
+      "name": "labelName",
+      "type": "ordinal",
+      "range": ["Region", "Industry"],
+      "domain": ["left", "right"]
+    },
+    {
+      "name": "industry_color",
+      "type": "ordinal",
+      "domain": ["Fashion & Retail", "Finance & Investments", "Food & Beverage", "Healthcare", "Manufacturing", "Technology"],
+      "range": ["#64dfdf", "#4cc9f0", "#4361ee", "#480ca8", "#7209b7", "#b5179e"]
+    },
+    {
+      "name": "region_color",
+      "type": "ordinal",
+      "domain": ["Africa", "Asia", "Europe", "Middle East", "North America", "South America"],
+      "range": ["#64dfdf", "#4cc9f0", "#4361ee", "#480ca8", "#7209b7", "#b5179e"]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "left",
+      "scale": "y",
+      "labels": false,
+      "domain": false,
+      "ticks": false
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "nodes"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "region_color", "field": "left"},
+          "fillOpacity": {"value": 0.9},
+          "width": {"scale": "x", "band": 1},
+          "x": {"scale": "x", "field": "stack"},
+          "y": {"field": "y0", "scale": "y"},
+          "y2": {"field": "y1", "scale": "y"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {"data": "destinationNodes"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "industry_color", "field": "right"},
+          "fillOpacity": {"value": 1},
+          "width": {"scale": "x", "band": 1},
+          "x": {"scale": "x", "field": "stack"},
+          "y": {"field": "y0", "scale": "y"},
+          "y2": {"field": "y1", "scale": "y"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "name": "edgeMark",
+      "from": {"data": "edges"},
+      "clip": true,
+      "encode": {
+        "update": {
+          "stroke": [{"scale": "region_color", "field": "left"}],
+          "strokeWidth": {"field": "strokeWidth"},
+          "path": {"field": "path"},
+          "strokeOpacity": {
+            "signal": " (groupHover.left == datum.left || groupHover.right == datum.right) ? 0.9 : 0.3"
+          },
+          "zindex": {
+            "signal": "(groupHover.left == datum.left || groupHover.right == datum.right) ? 1 : 0"
+          },
+          "tooltip": {
+            "signal": "datum.left + ' → ' + datum.right + ': ' +   datum.size + '%'"
+          }
+        },
+        "hover": {"strokeOpacity": {"value": 1}}
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "groups"},
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "scale('x', datum.stack) + (datum.rightLabel ? bandwidth('x') + 8 : -8)"
+          },
+          "yc": {"signal": "(datum.scaledY0 + datum.scaledY1)/2"},
+          "align": {"signal": "datum.rightLabel ? 'left' : 'right'"},
+          "baseline": {"value": "middle"},
+          "fontWeight": {"value": "bold"},
+          "font": {"value": "Poppins"},
+          "text": {
+            "signal": "abs(datum.scaledY0-datum.scaledY1) > 13 ? datum.grpId : ''"
+          }
+        }
+      }
+    }
+  ],
+  "signals": [
+    {
+      "name": "groupHover",
+      "value": {},
+      "on": [
+        {
+          "events": "@groupMark:mouseover",
+          "update": "{left:datum.stack=='left' && datum.grpId, right:datum.stack=='right' && datum.grpId}"
+        },
+        {"events": "mouseout", "update": "{}"}
+      ]
+    }
+  ],
+  "config": {
+    "background": "#edf2fb",
+    "view": { "stroke": null }
+  }
+}

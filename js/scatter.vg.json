@@ -1,0 +1,207 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Brush through the scatter plot and the top 5 people within that interval will be displayed on the right.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/ckho0019/FIT3179Week10/main/data/billionaire.csv"
+    },
+    "params": [
+      {
+        "name": "Minimum_Age",
+        "value": 18,
+        "bind": {
+          "input": "range",
+          "min": 18,
+          "max": 100,
+          "step": 1,
+          "name": "Minimum Age: "
+        }
+      },
+      {
+        "name": "Select_Region",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "Africa",
+            "Asia",
+            "Europe",
+            "Middle East",
+            "North America",
+            "South America"
+          ],
+          "labels": [
+            "Show All",
+            "Africa",
+            "Asia",
+            "Europe",
+            "Middle East",
+            "North America",
+            "South America"
+          ],
+          "name": "Select Region: "
+        }
+      }
+    ],
+    
+    "transform": [
+      {"window": [{"op": "row_number", "as": "row_number"}]},
+      {"filter": "datum.Age >= Minimum_Age"},
+      {"filter": "Select_Region == null || datum.Region == Select_Region"}
+    ],
+    
+    "hconcat": [
+      {"height": 300,
+        "width": 600,
+        "title": {
+          "text": "Billionaire's Net Worth Against Age",
+          "color": "black",
+          "fontWeight": "bold",
+          "fontSize": 28,
+          "offset": 50
+        },
+        "layer": [
+          {"params": [
+              {
+                "name": "brush",
+                "select": {"type": "interval"}
+              },
+              {
+                "name": "region_highlight",
+                "select": {"type": "point", "fields": ["Region"]},
+                "bind": "legend"
+              }
+            ],
+            "mark": {"type": "point", "filled": true},
+            "encoding": {
+              "x": {
+                "field": "Age",
+                "type": "quantitative",
+                "scale": {"domain": [10, 100]},
+                "title": "Age"
+              },
+              "y": {
+                "field": "NetWorth",
+                "type": "quantitative",
+                "title": "Net Worth (b)"
+              },
+              "tooltip": [
+                {"field": "Name", "type": "nominal"},
+                {"field": "Age", "type": "quantitative"},
+                {"field": "NetWorth", "type": "quantitative", "title": "Net Worth (b)"},
+                {"field": "Region", "type": "nominal"}
+              ],
+              "color": {"field": "Region", "type": "nominal", "scale": {"range": ["#7209b7", "#3a0ca3", "#008000", "#ff6b35", "#ff006e", "#b7094c"]}},
+              "opacity": {
+                "condition": {"param": "region_highlight", "value": 1},
+                "value": 0
+              }
+            }
+          },
+          {
+            "transform": [{"filter": "datum.NetWorth >= 95"}],
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "baseline": "middle",
+              "dx": 5,
+              "size": 12
+            },
+            "encoding": {
+              "text": {"field": "Name", "type": "nominal"},
+              "x": {
+                "field": "Age",
+                "type": "quantitative",
+                "scale": {"domain": [10, 100]}
+              },
+              "y": {
+                "field": "NetWorth",
+                "type": "quantitative",
+                "title": "Net Worth (b)"
+              },
+              "tooltip": [
+                {"field": "Name", "type": "nominal"},
+                {"field": "Age", "type": "quantitative"},
+                {"field": "NetWorth", "type": "quantitative", "title": "Net Worth (b)"},
+                {"field": "Region", "type": "nominal"}
+              ],
+              "opacity": {
+                "condition": {"param": "region_highlight", "value": 1},
+                "value": 0
+              }
+            }
+          }
+        ]
+      },  
+      {
+        "transform": [
+          {"filter": {"param": "brush"}},
+          {"window": [{"op": "rank", "as": "rank"}]},
+          {"filter": {"field": "rank", "lt": 6}},
+          {"filter": "Select_Region == null || datum.Region == Select_Region"}
+        ],
+        "hconcat": [
+          {
+            "width": 200,
+            "title": "Name",
+            "mark": "text",
+            "height": 250,
+            "encoding": {
+              "text": {"field": "Name", "type": "nominal"},
+              "y": {"field": "row_number", "type": "ordinal", "axis": null}
+            }
+          },
+          {
+            "width": 150,
+            "title": "Age",
+            "mark": "text",
+            "height": 250,
+            "encoding": {
+              "text": {"field": "Age", "type": "quantitative"},
+              "y": {"field": "row_number", "type": "ordinal", "axis": null}
+            }
+          },
+          {
+            "width": 150,
+            "title": "Net Worth (b)",
+            "mark": "text",
+            "height": 250,
+            "encoding": {
+              "text": {"field": "NetWorth", "type": "quantitative", "format": ".1f"},
+              "y": {"field": "row_number", "type": "ordinal", "axis": null}
+            }
+          }
+        ]
+      }
+    ],
+    "resolve": {"legend": {"color": "independent"}},
+    "config": {
+      "background": "#edf2fb",
+      "font": "Poppins",
+      "axis": {
+        "labelPadding": 10,
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titlePadding": 10,
+        "grid": false,
+        "ticks": false
+      },
+      "view": {
+        "stroke": "transparent"
+      },
+      "text": {
+        "fontSize": 16
+      },
+      "legend": {
+        "labelFontSize": 12,
+        "titleFontSize": 15
+      },
+      "title": {
+        "fontSize": 20,
+        "offset": 30
+      },
+      "concat": {
+        "spacing": 50
+      }
+    }
+  }
+  

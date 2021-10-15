@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Selecting a bar will make that bar the only coloured one.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ckho0019/FIT3179Week10/main/data/billionaire.csv"
+  },
+  "title": {
+    "text": "Top 10 Billionaires",
+    "color": "black",
+    "fontWeight": "bold",
+    "fontSize": 28,
+    "offset": 20
+  },
+  "height": 350,
+  "width": 580,
+  "layer": [
+    {
+      "params": [
+        {"name": "bar_select", "select": "point"}
+      ],
+      "mark": {"type": "bar"},
+      "encoding": {
+        "x": {"field": "NetWorth", "type": "quantitative", "axis": null},
+        "y": {"field": "Name", "type": "nominal", "sort": ["Rank"], "axis": {"title": null, "ticks": false}},
+        "color" : {
+          "condition": {"test": "datum['Rank'] < 2", "value": "#7b2cbf"},
+        "value": "#c77dff"
+        },
+        "fillOpacity": {
+          "condition": {"param": "bar_select", "value": 1},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Name", "type": "nominal"},
+          {"field": "Rank", "type": "quantitative"},
+          {"field": "NetWorth", "type": "quantitative", "title": "Net Worth (b)"},
+          {"field": "Source", "type": "nominal"},
+          {"field": "Industry", "type": "nominal"}
+        ]
+      },
+      "transform": [
+        {"filter": "datum.NetWorth >= 80"}
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5
+      },
+      "encoding": {
+        "text": {"field": "NetWorth", "type": "quantitative"},
+        "x": {"field": "NetWorth", "type": "quantitative", "axis": null},
+        "y": {"field": "Name", "type": "nominal", "sort": ["Rank"], "axis": {"title": null, "ticks": false}},
+        "fillOpacity": {
+          "condition": {"param": "bar_select", "value": 1},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Name", "type": "nominal"},
+          {"field": "Rank", "type": "quantitative"},
+          {"field": "NetWorth", "type": "quantitative", "title": "Net Worth (b)"},
+          {"field": "Source", "type": "nominal"},
+          {"field": "Industry", "type": "nominal"}
+        ]
+      },
+      "transform": [
+        {"filter": "datum.NetWorth >= 80"}
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -10
+      },
+      "encoding": {
+        "text": {"field": "Source", "type": "nominal"},
+        "x": {"field": "NetWorth", "type": "quantitative", "axis": null},
+        "y": {"field": "Name", "type": "nominal", "sort": ["Rank"], "axis": {"title": null, "ticks": false}},
+        "color": {
+          "condition": {"test": "datum['Rank'] > 1", "value": "black"},
+          "value": "white"
+        },
+        "fillOpacity": {
+          "condition": {"param": "bar_select", "value": 1},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Name", "type": "nominal"},
+          {"field": "Rank", "type": "quantitative"},
+          {"field": "NetWorth", "type": "quantitative", "title": "Net Worth (b)"},
+          {"field": "Source", "type": "nominal"},
+          {"field": "Industry", "type": "nominal"}
+        ]
+      },
+      "transform": [
+        {"filter": "datum.NetWorth >= 80"}
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "x": 0,
+        "dx": 5
+      },
+      "encoding": {
+        "text": {"field": "Rank", "type": "quantitative"},
+        "y": {"field": "Name", "type": "nominal", "sort": ["Rank"], "axis": {"title": null, "ticks": false}},
+        "color": {
+          "condition": {"test": "datum['Rank'] > 1", "value": "black"},
+          "value": "white"
+        },
+        "fillOpacity": {
+            "condition": {"param": "bar_select", "value": 1},
+            "value": 0.2
+          },
+        "tooltip": [
+          {"field": "Name", "type": "nominal"},
+          {"field": "Rank", "type": "quantitative"},
+          {"field": "NetWorth", "type": "quantitative", "title": "Net Worth (b)"},
+          {"field": "Source", "type": "nominal"},
+          {"field": "Industry", "type": "nominal"}
+        ]
+      },
+      "transform": [
+        {"filter": "datum.NetWorth >= 80"}
+      ]
+    }
+  ],
+  "config": {
+    "background": "#edf2fb",
+    "font": "Poppins",
+    "axis": {
+      "labelPadding": 10,
+      "labelFontSize": 13,
+      "labelFontWeight": "bold",
+      "grid": false,
+      "domain": false
+    },
+    "text": {
+      "fontSize": 13,
+      "fontWeight":"bold"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Title of the Visualization -->
+    <title>FIT3179 Data Visualization 2</title>
+    <meta charset="utf-8" />
+
+    <!-- Styles -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins:wght@200' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+    <!-- Vega-Lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+
+  </head>
+
+  <body>
+    <div class="jumbotron" id="main">
+      <span id="heading">Forbes Billionaires</span><span id="subheading"> of 2021</span>
+      <hr>
+
+      <div class="row align-items-center d-flex flex-row text-justify">
+        <div class="col-6">
+          <h5><span id="important">Forbes Magazine</span>, well-known for its annual lists and rankings revealed that in <b>2021</b>, 
+                there were a total of <b>2755</b> Billionaires and a <b>wealth surge</b> occured as the number escalated by <b>660</b>.
+          </h5>
+          <br>
+          <h5><b>Jeff Bezos</b> topped the list for the fourth year in a row while <b>Elon Musk</b> 
+              soared to the second spot as both <b>Amazon</b> and <b>Tesla</b> shares skyrocketed in 2021.
+          </h5>
+        </div>  
+
+        <div class="col-6" id="pad">
+          <!-- Bar Viz -->
+          <div id="bar"></div>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row align-items-center d-flex flex-row text-justify">
+        <div class="col-6">
+          <!-- Map Viz -->
+          <div id="map"></div>
+        </div>
+
+        <div class="col-6">
+          <h5 id="right"><b>United States of America</b> has the greatest number of billionaires with <b>724</b> while <b>China</b> came second with 
+              <b>626</b> billionaires. India, Germany and Russia were next with each having more than 100 billionaires.
+          </h5>
+        </div>
+      </div>
+
+      <br><br>
+      
+      <div class="row align-items-center d-flex flex-row text-justify">  
+        <div class="col-8">
+          <!-- Scatter Viz -->
+          <div id="donutstacked"></div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row align-items-center d-flex flex-row text-justify">
+        <div class="col-6">
+          <h5 id="left">Amid the <b>2755</b> billionaires,
+            majority of them aged between <b>51 to 70</b> while one-third of the billionaires aged between <b>71 to 100</b>. <b>Asia</b> has
+            the most billionaires with <b>1148</b> which is around <b>42%</b>.
+          </h5>
+        </div>
+        <div class="col-6">
+          <h5 id="right">The industry with the highest total net worth is the <b>Technology</b> industry with a whopping amount of  
+            <b>2456.7 billion</b> and the total number of billionaires is <b>365</b>.
+          </h5>
+        </div>
+      </div>
+
+      <br><br><br>
+
+      <div class="row align-items-center d-flex flex-row text-justify justify-content-center">
+        <div class="col-6">
+          <h5 id="left">In <b>North America</b>, most billionaires ventured into the <b>Finance & Investments</b> and
+              <b>Technology</b> industries. In <b>Europe</b>, the top venture is the <b>Fashion & Retail</b> industry 
+              whereas in <b>Asia</b>, the <b>Manufacturing</b> industry topped the list.
+          </h5>
+        </div>
+
+        <div class="col-6" id="pad">
+          <!-- Sankey Viz -->
+          <div id="sankey"></div>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="row align-items-center d-flex flex-row text-justify">  
+        <div class="col-10">
+          <!-- Scatter Viz -->
+          <div id="scatter"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      var viz1 = "js/bar.vg.json";
+      vegaEmbed('#bar', viz1, {"actions": false}).then(function(result){}).catch(console.error);
+
+      var viz2 = "js/map.vg.json";
+      vegaEmbed('#map', viz2, {"actions": false}).then(function(result){}).catch(console.error);
+
+      var viz3 = "js/donutstacked.vg.json";
+      vegaEmbed('#donutstacked', viz3, {"actions": false}).then(function(result){}).catch(console.error);
+
+      var viz4 = "js/scatter.vg.json";
+      vegaEmbed('#scatter', viz4, {"actions": false}).then(function(result){}).catch(console.error);
+
+      var viz5 = "js/sankey.vg.json";
+      vegaEmbed('#sankey', viz5, {"actions": false}).then(function(result){}).catch(console.error);
+    </script>
+  </body>
+
+  <footer id="footer">
+    <div>
+      <div class="row">
+        <div class="col-4">
+          <h3 class="lead">Created by <a href="https://github.com/ckho0019" target="_blank">Khor Cheng Ee</a></h3>
+        </div>
+        <div class="col-4 text-center">
+          <h3 class="lead">FIT3179 Data Visualization 2</h3>
+        </div>
+        <div class="col-4 text-right">
+          <h3 class="lead">Dataset from <a href="https://www.kaggle.com/roysouravcu/forbes-billionaires-of-2021" target="_blank">Kaggle</a></h3>
+        </div>
+      </div>
+      
+    </div>
+  </footer>
+</html>

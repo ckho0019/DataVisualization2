@@ -1,0 +1,213 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Clicking on legend selects the age range for both charts.",
+    "data": {
+        "url": "https://raw.githubusercontent.com/ckho0019/FIT3179Week10/main/data/billionaire.csv"
+      },
+    "params": [
+        {
+          "name": "Select_Region",
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "Africa",
+              "Asia",
+              "Europe",
+              "Middle East",
+              "North America",
+              "South America"
+            ],
+            "labels": [
+              "Show All",
+              "Africa",
+              "Asia",
+              "Europe",
+              "Middle East",
+              "North America",
+              "South America"
+            ],
+            "name": "Select Region: "
+          }
+        }
+      ],
+    "transform": [
+      {"filter": "Select_Region == null || datum.Region == Select_Region"},
+      {
+        "calculate": "datum.Age >= 18 && datum.Age <= 30? '18 - 30':datum.age_range",
+        "as": "age_range"
+      },
+      {
+        "calculate": "datum.Age >= 31 && datum.Age <= 50? '31 - 50':datum.age_range",
+        "as": "age_range"
+      },
+      {
+        "calculate": "datum.Age >= 51 && datum.Age <= 70? '51 - 70':datum.age_range",
+        "as": "age_range"
+      },
+      {
+        "calculate": "datum.Age >= 71 && datum.Age <= 100? '71 - 100':datum.age_range",
+        "as": "age_range"
+      },
+      {
+        "joinaggregate": [{
+         "op": "count",
+         "as": "age_count"
+        }],
+        "groupby": ["age_range"]
+      },
+      {
+        "joinaggregate": [{
+         "op": "count",
+         "as": "age_sum"
+        }]
+      },
+      {
+        "calculate": "datum.age_count/datum.age_sum * 100",
+        "as": "age_percentage"
+      },
+      {
+        "calculate": "'Billionaires: ' + datum['age_sum']",
+        "as": "age_text"
+      },
+      {
+        "joinaggregate": [{
+         "op": "count",
+         "as": "industry_count"
+        }],
+        "groupby": ["age_range", "Industry"]
+      },
+      {
+        "joinaggregate": [{
+         "op": "count",
+         "as": "industry_sum"
+        }],
+        "groupby": ["Industry"]
+      },
+      {
+        "joinaggregate": [{
+         "op": "sum",
+         "field": "NetWorth",
+         "as": "total_networth"
+        }],
+        "groupby": ["Industry"]
+      },
+      {
+        "calculate": "datum.industry_count/datum.industry_sum * 100",
+        "as": "industry_percentage"
+      }
+    ],
+    "hconcat": [
+      {
+        "height": 300,
+        "width": 700,
+        "title": {
+          "text": "Age Distribution of Billionaires",
+          "color": "black",
+          "fontWeight": "bold",
+          "fontSize": 28,
+          "offset": 40
+        },
+        "layer": [
+          {"params": [
+              {
+                "name": "age_highlight",
+                "select": {"type": "point", "fields": ["age_range"]},
+                "bind": "legend"
+              }
+            ],
+            "mark": {"type": "arc", "innerRadius": 110},
+            "encoding": {
+              "theta": {"aggregate": "count", "field": "age_range", "type": "quantitative"},
+              "color": {"field": "age_range", "type": "nominal", "scale": {"range": ["#480ca8", "#4cc9f0", "#9d4edd", "#b5179e"]}, "legend": {"title": "Age Range", "orient": "none", "legendX": 20, "legendY": 120}},
+              "fillOpacity": {
+                "condition": {"param": "age_highlight", "value": 1},
+                "value": 0.3
+              },
+              "tooltip": [
+                {"field": "age_range", "type": "nominal", "title": "Age Range"},
+                {"aggregate": "count", "field": "age_range", "type": "quantitative", "title": "Number of Billionaires"},
+                {"field": "age_percentage", "type": "quantitative", "format": ".2f", "title": "Percentage (%)"}
+              ]
+            }
+          },
+          {"mark": {"type": "text", "size": 20},
+            "encoding": {
+              "text": {"field": "age_text", "type": "nominal"},
+              "tooltip": [
+                {"field": "age_sum", "type": "nominal", "title": "Total Num of Billionaires"}
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "height": 300,
+        "width": 600,
+        "title": {
+          "text": "Total Net Worth Against Industries",
+          "color": "black",
+          "fontWeight": "bold",
+          "fontSize": 28,
+          "offset": 40
+        },
+        "layer": [
+          {
+            "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3, "width": {"band": 0.5}},
+            "encoding": {
+              "x": {"field": "Industry", "type": "ordinal", "axis": {"labelAngle": -45}},
+              "y": {"aggregate": "sum", "field": "NetWorth", "title": "Total Net Worth (b)"},
+              "color": {"field": "age_range", "type": "nominal", "scale": {"range": ["#480ca8", "#4cc9f0", "#9d4edd", "#b5179e"]}
+              },
+              "fillOpacity": {
+                "condition": {"param": "age_highlight", "value": 1},
+                "value": 0.3
+              },
+              "tooltip": [
+                {"field": "Industry", "type": "nominal"},
+                {"field": "age_range", "type": "nominal", "title": "Age Range"},
+                {"aggregate": "sum", "field": "NetWorth", "title": "Net Worth (b)"},
+                {"aggregate": "count", "field": "age_range", "type": "quantitative", "title": "Number of Billionaires"},
+                {"field": "industry_percentage", "type": "quantitative", "format": ".2f", "title": "Percentage (%)"}
+              ]
+            }
+          },
+          {
+            "mark": {"type": "text", "dy": -10, "fontWeight": "bold"},
+            "encoding": {
+              "x": {"field": "Industry", "type": "ordinal"},
+              "y": {"aggregate": "sum", "field": "NetWorth", "title": "Total Net Worth (b)"},
+              "text": {"field": "total_networth", "format": ".1f"},
+              "tooltip": [
+                {"field": "Industry", "type": "nominal"},
+                {"aggregate": "sum", "field": "NetWorth", "title": "Net Worth (b)"},
+                {"aggregate": "count", "type": "quantitative", "title": "Number of Billionaires"}
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "config": {
+      "background": "#edf2fb",
+      "font": "Poppins",
+      "view": {
+        "stroke": null
+      },
+      "axis": {
+        "labelPadding": 10,
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "titlePadding": 10,
+        "grid": false,
+        "ticks": false
+      },
+      "legend": {
+        "labelFontSize": 12,
+        "titleFontSize": 15
+      },
+      "concat": {
+        "spacing": 50
+      }
+    }
+  }

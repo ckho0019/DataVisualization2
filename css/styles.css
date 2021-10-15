@@ -1,0 +1,81 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #d7e3fc;
+}
+
+a {
+    color: #4881d5;
+}
+
+a:hover {
+    color: #4881d5;
+}
+
+h3 {
+    margin: 0;
+    color: black;  
+}
+
+h4, h5, h6 {
+    color: black;
+    line-height: 1.5;
+}
+
+span {
+    color: black;
+}
+
+.vega-bind-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#main {
+    min-height: 700px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: #edf2fb;
+    margin-bottom: 0;
+}
+
+#heading {
+    font-weight: 900;
+    font-size: 80px;
+}
+
+#subheading {
+    font-weight: 900;
+    font-size: 40px;
+}
+
+#important {
+    font-weight: 900;
+    font-size: 30px;
+}
+
+#b {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#right {
+    padding-left: 32px;
+}
+
+#left {
+    padding-right: 32px;
+}
+
+#pad {
+    padding-left: 32px;
+}
+
+#footer {
+    padding-left: 16px;
+    background-color: #d7e3fc;
+    color: black;
+    margin: 16px;
+}
